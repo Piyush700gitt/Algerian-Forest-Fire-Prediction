@@ -1,1 +1,147 @@
-<h1> WELCOME TO THE HOME PAGE </h1>
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forest Fire Prediction</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #071d16, #123d2c, #1c563c);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 25px;
+        }
+
+        .hero {
+            max-width: 850px;
+            width: 100%;
+            text-align: center;
+            padding: 65px 35px;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 25px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        }
+
+        .icon {
+            font-size: 55px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 42px;
+            margin-bottom: 15px;
+        }
+
+        .subtitle {
+            color: #b7d5c5;
+            font-size: 16px;
+            line-height: 1.8;
+            max-width: 650px;
+            margin: 0 auto 35px;
+        }
+
+        .features {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .feature {
+            padding: 12px 20px;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 30px;
+            font-size: 13px;
+            color: #d8f3dc;
+        }
+
+        .start-btn {
+            display: inline-block;
+            padding: 15px 35px;
+            background: linear-gradient(90deg, #70e000, #38b000);
+            color: #102b1c;
+            text-decoration: none;
+            font-weight: 700;
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+
+        .start-btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(112,224,0,0.3);
+        }
+
+        .footer {
+            margin-top: 45px;
+            font-size: 12px;
+            color: #a8c5b5;
+        }
+
+        @media(max-width: 600px) {
+            h1 {
+                font-size: 29px;
+            }
+
+            .hero {
+                padding: 45px 20px;
+            }
+
+            .subtitle {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="hero">
+
+        <div class="icon">🔥</div>
+
+        <h1>Forest Fire Prediction</h1>
+
+        <p class="subtitle">
+            An intelligent Machine Learning application that predicts
+            the Fire Weather Index (FWI) using meteorological and
+            environmental conditions.
+        </p>
+
+        <div class="features">
+            <div class="feature">🌡️ Weather Analysis</div>
+            <div class="feature">🤖 Ridge Regression</div>
+            <div class="feature">📊 FWI Prediction</div>
+        </div>
+
+        <a href="{{ url_for('predict_datapoint') }}" class="start-btn">
+            Start Prediction →
+        </a>
+
+        <div class="footer">
+            <p>Built with Python | Flask | Scikit-learn</p>
+            <p>Developed by Piyush Shrivastava</p>
+        </div>
+
+    </div>
+
+</body>
+</html>
+```

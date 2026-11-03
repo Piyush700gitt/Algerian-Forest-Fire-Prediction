@@ -1,28 +1,253 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forest Fire Prediction | FWI</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #071d16, #123d2c, #1c563c);
+            min-height: 100vh;
+            padding: 40px 20px;
+            color: white;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .header h1 {
+            font-size: 34px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #b7d5c5;
+            font-size: 14px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+        }
+
+        .card h2 {
+            font-size: 21px;
+            margin-bottom: 25px;
+            color: #d8f3dc;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 22px;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 13px;
+            color: #d0e7d8;
+            margin-bottom: 8px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 13px 15px;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.2);
+            outline: none;
+            background: rgba(255,255,255,0.1);
+            color: white;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .input-group input:focus {
+            border-color: #70e000;
+            box-shadow: 0 0 10px rgba(112,224,0,0.2);
+        }
+
+        .input-group input::placeholder {
+            color: #a7c4b2;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 30px;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(90deg, #70e000, #38b000);
+            color: #102b1c;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(112,224,0,0.3);
+        }
+
+        .result {
+            margin-top: 30px;
+            padding: 25px;
+            text-align: center;
+            border-radius: 15px;
+            background: rgba(112,224,0,0.12);
+            border: 1px solid rgba(112,224,0,0.4);
+        }
+
+        .result p {
+            color: #b7d5c5;
+            font-size: 14px;
+        }
+
+        .result h2 {
+            font-size: 32px;
+            color: #9ef01a;
+            margin-top: 10px;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #a8c5b5;
+            font-size: 12px;
+        }
+
+        @media(max-width: 600px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .card {
+                padding: 22px;
+            }
+
+            .header h1 {
+                font-size: 25px;
+            }
+        }
+    </style>
+</head>
+
 <body>
-    <div class="login">
-        <h1>FWI prediction</h1>
 
-        <!--main input for receiving quqey to our ML-->
-        <form action="{{url_for('predict_datapoint')}}" method="post">
-            <input type="text" name="Temperature" placeholder="Temperature" required="required"/><br>
-            <input type="text" name="RH" placeholder="RH" required="required"/><br>
-            <input type="text" name="Ws" placeholder="Ws" required="required"/><br>
-            <input type="text" name="Rain" placeholder="Rain" required="required"/><br>
-            <input type="text" name="FFMC" placeholder="FFMC" required="required"/><br>
-            <input type="text" name="DMC" placeholder="DMC" required="required"/><br>
-            <input type="text" name="ISI" placeholder="ISI" required="required"/><br>
-            <input type="text" name="Classes" placeholder="Classes" required="required"/><br>
-            <input type="text" name="Region" placeholder="Region" required="required"/><br>
-            
+<div class="container">
 
+    <div class="header">
+        <h1>🔥 Forest Fire Prediction</h1>
+        <p>AI-Powered Fire Weather Index Prediction System</p>
+    </div>
 
-        
-    
-            <button type="submit" class="btn btn-primary btn-block btn-large">predict</button>
-        </form>    
-    <h2>
-        THE FWI PREDICTION IS {{results}}
-    </h2>  
-   <body>
-   </html>       
+    <div class="card">
+
+        <h2>🌿 Enter Environmental Parameters</h2>
+
+        <form action="{{ url_for('predict_datapoint') }}" method="post">
+
+            <div class="form-grid">
+
+                <div class="input-group">
+                    <label>Temperature (°C)</label>
+                    <input type="number" step="any" name="Temperature"
+                    placeholder="Enter temperature" required>
+                </div>
+
+                <div class="input-group">
+                    <label>Relative Humidity (RH)</label>
+                    <input type="number" step="any" name="RH"
+                    placeholder="Enter humidity" required>
+                </div>
+
+                <div class="input-group">
+                    <label>Wind Speed (Ws)</label>
+                    <input type="number" step="any" name="Ws"
+                    placeholder="Enter wind speed" required>
+                </div>
+
+                <div class="input-group">
+                    <label>Rainfall (Rain)</label>
+                    <input type="number" step="any" name="Rain"
+                    placeholder="Enter rainfall" required>
+                </div>
+
+                <div class="input-group">
+                    <label>Fine Fuel Moisture Code (FFMC)</label>
+                    <input type="number" step="any" name="FFMC"
+                    placeholder="Enter FFMC" required>
+                </div>
+
+                <div class="input-group">
+                    <label>Duff Moisture Code (DMC)</label>
+                    <input type="number" step="any" name="DMC"
+                    placeholder="Enter DMC" required>
+                </div>
+
+                <div class="input-group">
+                    <label>Initial Spread Index (ISI)</label>
+                    <input type="number" step="any" name="ISI"
+                    placeholder="Enter ISI" required>
+                </div>
+
+                <div class="input-group">
+                    <label>Fire Class</label>
+                    <input type="number" step="any" name="Classes"
+                    placeholder="Enter encoded class" required>
+                </div>
+
+                <div class="input-group">
+                    <label>Region</label>
+                    <input type="number" step="any" name="Region"
+                    placeholder="Enter region code" required>
+                </div>
+
+            </div>
+
+            <button type="submit">🔥 Predict Fire Weather Index</button>
+
+        </form>
+
+        {% if results is not none and results is defined %}
+
+        <div class="result">
+            <p>Predicted Fire Weather Index</p>
+            <h2>{{ "%.2f"|format(results|float) }}</h2>
+        </div>
+
+        {% endif %}
+
+    </div>
+
+    <div class="footer">
+        <p>Built with Python | Flask | Ridge Regression | Scikit-learn</p>
+        <p>Developed by Piyush Shrivastava</p>
+    </div>
+
+</div>
+
+</body>
+</html>
