@@ -3,6 +3,12 @@
 A Machine Learning web application that predicts the **Fire Weather Index (FWI)** using the Algerian Forest Fires dataset. The project includes Exploratory Data Analysis (EDA), Feature Engineering, Model Training, and deployment using Flask.
 
 ---
+## 🌐 Live Demo
+
+The application is deployed on Render:
+
+**[Algerian Forest Fire Prediction – Live Application](https://algerian-forest-fire-prediction-33yc.onrender.com)**
+
 
 ## 📌 Project Overview
 
